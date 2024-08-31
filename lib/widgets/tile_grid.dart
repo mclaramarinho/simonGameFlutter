@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:events_emitter/events_emitter.dart';
 import 'package:simon_game/main.dart';
+import 'package:simon_game/services/singletons/events.dart';
 import 'package:simon_game/widgets/tile.dart';
 import 'package:flutter/material.dart';
 
@@ -25,11 +26,8 @@ class _TileGridState extends State<TileGrid>{
   @override
   void initState() {
     super.initState();
-
-    final EventListener listener = EventListener("start", (dynamic data) => startGame());
-    events.addEventListener(listener);
-    final EventListener backMenuListener = EventListener("backMenu", (dynamic data) => resetData());
-    events.addEventListener(backMenuListener);
+    Events.registerListener(key: "start", callback: startGame);
+    Events.registerListener(key: "backMenu", callback: resetData);
   }
 
   @override
@@ -75,16 +73,19 @@ class _TileGridState extends State<TileGrid>{
       tappedSequence.add(tileNumber);
       updateHighlightMap(tileNumber: tileNumber);
     });
-    if( checkSequence(tileNumber, tappedSequence.length-1)){
+
+    if(checkSequence(tileNumber, tappedSequence.length-1)){
+      Events.emit(event: "tilePress");
+
       if(tappedSequence.length == sequence.length) {
         setState(() {
           playing=false;
         });
-        Timer(const Duration(milliseconds: 800), nextRound);
+        Timer(const Duration(milliseconds: 1000), nextRound);
       }
 
     }else{
-      events.emit("stop", true);
+      Events.emit(event: "stop");
     }
   }
 
@@ -92,15 +93,20 @@ class _TileGridState extends State<TileGrid>{
     int nextSequence = getNextTile();
     setState(() {
       sequence.add(nextSequence);
-      events.emit("updateScore", 1);
+      Events.emit(event: "updateScore");
       tappedSequence = [];
       playing=true;
     });
   }
 
   bool checkSequence(int currentTile, int arrayIndex){
-    int correctTile = sequence[arrayIndex];
-    return correctTile == currentTile;
+    try{
+      int correctTile = sequence[arrayIndex];
+      return correctTile == currentTile;
+    }catch(e){
+      return false;
+    }
+
   }
 
   bool shouldHighlightTile(int tileNumber){

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,14 +16,12 @@ class Tile extends StatefulWidget{
 class _TileState extends State<Tile>{
   bool? highlightLocal;
   bool activeTileLocal = true;
-  Timer t = Timer(Duration(seconds: 0), () => ());
+  Timer t = Timer(const Duration(seconds: 0), () => ());
 
   @override
   void didUpdateWidget(covariant Tile oldWidget) {
-    // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
     highlightTile();
-    print(widget.activeTile);
     setState(() {
       activeTileLocal = widget.activeTile;
     });

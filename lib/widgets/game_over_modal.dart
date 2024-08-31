@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:simon_game/main.dart';
+import 'package:simon_game/services/singletons/events.dart';
 import 'package:simon_game/widgets/button.dart' as Button;
 import 'package:simon_game/widgets/header.dart';
 
 class GameOverModal extends StatelessWidget{
   final int score;
   const GameOverModal({super.key, required this.score});
-  void handleTryAgain(){
-    events.emit("start", true);
-  }
-  void handleBackToMenu(){
-    events.emit("backMenu", true);
-  }
+
+  void handleTryAgain() => Events.emit(event: "start");
+  void handleBackToMenu() => Events.emit(event: "backMenu");
+
   @override
   Widget build(BuildContext context) {
     return Container(

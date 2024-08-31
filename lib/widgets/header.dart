@@ -20,6 +20,7 @@ class Header extends StatelessWidget{
   final HeaderType type;
   final Color color;
   final TextDecoration textDecoration;
+
   const Header({
     super.key,
     required this.content,
@@ -33,7 +34,7 @@ class Header extends StatelessWidget{
     return Text(
       content,
       style: TextStyle(
-        fontFamily: GoogleFonts.handjet().fontFamily,
+        fontFamily: "HandJet",
         color: color,
         decoration: textDecoration,
         fontSize: HeaderFontSizes[type],

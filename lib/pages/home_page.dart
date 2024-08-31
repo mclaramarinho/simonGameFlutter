@@ -1,18 +1,17 @@
-import 'dart:math';
-
 import 'package:events_emitter/events_emitter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:simon_game/main.dart';
+import 'package:simon_game/services/audio_controller.dart';
+import 'package:simon_game/services/singletons/events.dart';
 import 'package:simon_game/widgets/game_menu.dart';
 import 'package:simon_game/widgets/game_over_modal.dart';
 import 'package:simon_game/widgets/score_bar.dart';
-import 'package:simon_game/widgets/tile.dart';
 import 'package:simon_game/widgets/tile_grid.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget{
-  const HomePage({super.key});
+  const HomePage({ super.key });
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -27,18 +26,17 @@ class _HomePageState extends State<HomePage>{
   @override
   void initState() {
     super.initState();
-
-    final EventListener startListener = EventListener("start", (dynamic data) => startGame());
-    final EventListener scoreListener = EventListener("updateScore", (dynamic data) => updateScore());
-    final EventListener stopListener = EventListener("stop", (dynamic data) => stopGame());
-    final EventListener backMenuListener = EventListener("backMenu", (dynamic data) => resetData());
-    events.addEventListener(startListener);
-    events.addEventListener(scoreListener);
-    events.addEventListener(stopListener);
-    events.addEventListener(backMenuListener);
+    Events.registerListener(key: "tilePress", callback: handleTilePress);
+    Events.registerListener(key: "backMenu", callback: resetData);
+    Events.registerListener(key: "stop", callback: stopGame);
+    Events.registerListener(key: "updateScore", callback: updateScore);
+    Events.registerListener(key: "start", callback: startGame);
   }
 
-  void startGame() async{
+
+  startGame() async{
+    print('started');
+    AudioController().menuClick();
     SharedPreferences store = await SharedPreferences.getInstance();
     int lastHighScore = store.getInt("highScore") ?? 0;
 
@@ -64,12 +62,18 @@ class _HomePageState extends State<HomePage>{
       gameOn = false;
       gameOver = true;
     });
+    AudioController().wrongPlay();
   }
 
-  void updateScore(){
+  void updateScore() async{
     setState(() {
       score+=1;
     });
+  }
+
+  void handleTilePress() async{
+    print("caught");
+    AudioController().correctPlay();
   }
 
   void setUpHiScore() async{
@@ -78,6 +82,7 @@ class _HomePageState extends State<HomePage>{
     if(score > lastHighScore){
       store.setInt('highScore', score);
     }
+    
   }
 
   @override

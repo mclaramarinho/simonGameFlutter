@@ -3,6 +3,7 @@ import 'package:events_emitter/events_emitter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simon_game/main.dart';
+import 'package:simon_game/services/singletons/events.dart';
 import 'package:simon_game/widgets/button.dart';
 import 'package:simon_game/widgets/header.dart';
 
@@ -17,10 +18,8 @@ class GameMenu extends StatefulWidget{
 class _GameMenuState extends State<GameMenu>{
   bool gameOn = false;
 
-  void handleButtonPress(){
-    events.emitEvent(Event("start", true));
-  }
-  
+  void handleButtonPress() => Events.emit(event: "start");
+
   @override
   Widget build(BuildContext context) {
     return Column(

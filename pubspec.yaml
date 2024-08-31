@@ -38,6 +38,8 @@ dependencies:
   google_fonts: ^6.2.1
   events_emitter: ^0.5.2
   shared_preferences: ^2.3.2
+  flutter_soloud: ^2.1.1
+  audioplayers: ^6.1.0
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
@@ -70,7 +72,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+    - lib/assets/fonts/
+    - assets/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
@@ -85,10 +89,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+     - family: HandJet
+       fonts:
+         - asset: lib/assets/fonts/Handjet.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

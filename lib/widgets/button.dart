@@ -62,7 +62,7 @@ class Button extends StatelessWidget{
               style: TextStyle(
                 color: labelColor,
                 fontSize: fontSize,
-                fontFamily: GoogleFonts.handjet().fontFamily,
+                fontFamily: "HandJet",
                 fontWeight: FontWeight.w900,
               )
           )

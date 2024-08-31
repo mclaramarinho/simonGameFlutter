@@ -9,7 +9,7 @@ class ScoreBar extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       alignment: AlignmentDirectional.bottomCenter,
-      padding: const EdgeInsets.fromLTRB(8, 0, 8, 4),
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
       child:
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
