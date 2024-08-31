@@ -1,7 +1,5 @@
-import 'package:events_emitter/events_emitter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:simon_game/main.dart';
 import 'package:simon_game/services/audio_controller.dart';
 import 'package:simon_game/services/singletons/events.dart';
 import 'package:simon_game/widgets/game_menu.dart';
@@ -35,7 +33,6 @@ class _HomePageState extends State<HomePage>{
 
 
   startGame() async{
-    print('started');
     AudioController().menuClick();
     SharedPreferences store = await SharedPreferences.getInstance();
     int lastHighScore = store.getInt("highScore") ?? 0;
@@ -72,7 +69,6 @@ class _HomePageState extends State<HomePage>{
   }
 
   void handleTilePress() async{
-    print("caught");
     AudioController().correctPlay();
   }
 

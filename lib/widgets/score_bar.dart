@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simon_game/widgets/header.dart';
 
 class ScoreBar extends StatelessWidget{
   final int score;

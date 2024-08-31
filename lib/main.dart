@@ -1,4 +1,3 @@
-import 'package:events_emitter/emitters/event_emitter.dart';
 import 'package:flutter/material.dart';
 import 'package:simon_game/pages/home_page.dart';
 

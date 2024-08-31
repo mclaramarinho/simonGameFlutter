@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:events_emitter/events_emitter.dart';
-import 'package:simon_game/main.dart';
 import 'package:simon_game/services/singletons/events.dart';
 import 'package:simon_game/widgets/tile.dart';
 import 'package:flutter/material.dart';

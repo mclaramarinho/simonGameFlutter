@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:events_emitter/events_emitter.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:simon_game/main.dart';
 import 'package:simon_game/services/singletons/events.dart';
 import 'package:simon_game/widgets/button.dart';
 import 'package:simon_game/widgets/header.dart';
