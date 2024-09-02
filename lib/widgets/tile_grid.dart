@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:simon_game/services/audio_controller.dart';
 import 'package:simon_game/services/singletons/events.dart';
 import 'package:simon_game/widgets/tile.dart';
 import 'package:flutter/material.dart';
@@ -66,20 +67,20 @@ class _TileGridState extends State<TileGrid>{
   }
 
 
-  void handleUserTurn(int tileNumber){
+  void handleUserTurn(int tileNumber) async{
     setState(() {
       tappedSequence.add(tileNumber);
       updateHighlightMap(tileNumber: tileNumber);
     });
 
     if(checkSequence(tileNumber, tappedSequence.length-1)){
-      Events.emit(event: "tilePress");
 
       if(tappedSequence.length == sequence.length) {
         setState(() {
           playing=false;
         });
-        Timer(const Duration(milliseconds: 1000), nextRound);
+
+        Timer(const Duration(milliseconds: 800),nextRound);
       }
 
     }else{

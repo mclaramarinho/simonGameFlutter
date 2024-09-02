@@ -24,7 +24,6 @@ class _HomePageState extends State<HomePage>{
   @override
   void initState() {
     super.initState();
-    Events.registerListener(key: "tilePress", callback: handleTilePress);
     Events.registerListener(key: "backMenu", callback: resetData);
     Events.registerListener(key: "stop", callback: stopGame);
     Events.registerListener(key: "updateScore", callback: updateScore);
@@ -52,7 +51,7 @@ class _HomePageState extends State<HomePage>{
     });
   }
 
-  void stopGame() async{
+  void stopGame(){
     setUpHiScore();
 
     setState(() {
@@ -62,14 +61,10 @@ class _HomePageState extends State<HomePage>{
     AudioController().wrongPlay();
   }
 
-  void updateScore() async{
+  void updateScore(){
     setState(() {
       score+=1;
     });
-  }
-
-  void handleTilePress() async{
-    AudioController().correctPlay();
   }
 
   void setUpHiScore() async{

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:simon_game/services/audio_controller.dart';
 
 class Tile extends StatefulWidget{
   final dynamic Function()? onTap;
@@ -44,6 +45,7 @@ class _TileState extends State<Tile>{
   }
 
   void handleTap(){
+    AudioController().correctPlay();
     t.isActive ? t.cancel() : null;
   }
 
