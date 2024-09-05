@@ -80,7 +80,7 @@ class _TileGridState extends State<TileGrid>{
           playing=false;
         });
 
-        Timer(const Duration(milliseconds: 800),nextRound);
+        Timer(const Duration(milliseconds: 700),nextRound);
       }
 
     }else{

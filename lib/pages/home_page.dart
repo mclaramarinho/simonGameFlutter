@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage>{
 
 
   startGame() async{
-    AudioController().menuClick();
+    //AudioController().menuClick();
     SharedPreferences store = await SharedPreferences.getInstance();
     int lastHighScore = store.getInt("highScore") ?? 0;
 

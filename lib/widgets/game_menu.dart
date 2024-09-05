@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:simon_game/services/audio_controller.dart';
 import 'package:simon_game/services/singletons/events.dart';
 import 'package:simon_game/widgets/button.dart';
 import 'package:simon_game/widgets/header.dart';
@@ -15,7 +16,11 @@ class GameMenu extends StatefulWidget{
 class _GameMenuState extends State<GameMenu>{
   bool gameOn = false;
 
-  void handleButtonPress() => Events.emit(event: "start");
+  void handleButtonPress(){
+    AudioController().menuClick();
+
+    Events.emit(event: "start");
+  }
 
   @override
   Widget build(BuildContext context) {

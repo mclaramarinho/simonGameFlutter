@@ -9,7 +9,9 @@ class AudioController{
   }
   void correctPlay() async {
     print("correct play");
-    await player!.play(AssetSource('audios/correct_play.mp3'));
+    await player!.setSource(AssetSource('audios/correct_play.mp3'));
+    await player!.resume();
+    //await player!.play(AssetSource('audios/correct_play.mp3'), mode: PlayerMode.lowLatency);
   }
 
   void wrongPlay() async {
